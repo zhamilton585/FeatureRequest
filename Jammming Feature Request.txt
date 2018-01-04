@@ -1,0 +1,43 @@
+Feature Request: Playlist Limits
+January 4 2018 by Alexander Hamilton
+ 
+Objective:
+Place a limit on a playlist once it reaches a certain number of songs.
+ 
+Background:
+Currently, there are no limits on the number of songs in a playlist. Although there is nothing wrong with that, a user may want to place a count limit on their playlist to create a playlist of their favorite 50 songs. That list content would probably change over time but the limit of number of tracks would remain constant at 50.
+ 
+This feature will accomplish the following:
+ 
+·         Allow addition of songs until certain count is reached (default at 50 songs)
+·         Alert user once limit is reached
+·         Disallow more songs to be added
+ 
+ 
+Technical Design:
+ 
+Add trackCount object:
+ 
+In the App.js component, add a trackCount object with argument track that contains playlistTracks.length. This will give the current count of the number of tracks in the playlist.
+ 
+Add limit to addTrack object:
+ 
+In App.js, inside the addTrack object, add the condition this.trackCount < 50 to the if statement. This will ensure that no tracks will be added past the limit of 50.
+ 
+Display alert box to Playlist component:
+ 
+In Playlist.js, build a new property called trackLimit and create an if statement that checks if this.props.trackCount is equal to 50. If so, it will return alert(“You have reached the track limit of 50 songs!”).
+ 
+With these additives, the user will now be limited to 50 songs on their playlist. They can add and remove songs up to 50. After that they would need to delete some songs to change the playlist content.
+ 
+Caveats:
+ 
+Need for More Playlists:
+ 
+Since in Jammming a user can only create one playlist, limiting the number of songs on that playlist would cause the user to create a playlist of something very specific as being generic in content would most likely cause a need for more songs. With that being said, the user would want the option to create multiple playlists of 50 song limits to account for different genres or styles or moods.
+ 
+Cannot increase/decrease the limit:
+ 
+The user may not like the limit being at 50 songs. They may want 100 songs or 215 songs or no limit at all. With this feature, they can only have up to 50 tracks. Another feature that allows for the user to set the limit would have to be added to address this issue.
+ 
+
